@@ -37,10 +37,11 @@ public class MainActivity extends AppCompatActivity {
         etURL = (EditText) findViewById(R.id.etURL);
         btnSubmit = (Button) findViewById(R.id.btnSubmit);
 
-        checkScoringParameters();
+
     }
 
     private void checkScoringParameters() {
+        Toast.makeText(getApplicationContext(),"in check scroring params", Toast.LENGTH_SHORT).show();
         if(!sourceCode.equals(""))
         {
             // CODE TO CALL CHECKER FUNCTIONS CAN BE WRITTEN HERE
@@ -65,10 +66,13 @@ public class MainActivity extends AppCompatActivity {
         }
         sourceCode = sourceCode.toLowerCase();
         this.sourceCode = sourceCode;
+
+        checkScoringParameters();
     }
 
     public boolean checkDoctype(String sourceCode)
     {
+        Log.v("in doctype checking : ", "yes");
         boolean bool = false;
         final String strToChk = "[<][!][d][o][c][t][y][p][e][ ][h][t][m][l][>]";
         Pattern pattern = Pattern.compile(strToChk);
@@ -87,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
 
     public boolean checkTitleLength(String sourceCode)
     {
+        Log.v("in title checking : ", "yes");
         boolean bool = false;
         final String strToChk = "[<][t][i][t][l][e][>](.*)[<][/][t][i][t][l][e][>]";
         Pattern pattern = Pattern.compile(strToChk);
