@@ -23,7 +23,7 @@ public class DataContainer {
         {
             entities[i].citicalityMeasure = criticalities[i];
             entities[i].paramHashMap = new HashMap<>();
-            
+
         }
     }
 
