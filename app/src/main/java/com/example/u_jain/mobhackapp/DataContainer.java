@@ -3,6 +3,7 @@ package com.example.u_jain.mobhackapp;
 import android.content.Context;
 import android.widget.Toast;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
@@ -11,7 +12,7 @@ import java.util.Set;
  * Created by U_Jain on 6/15/2017.
  */
 
-public class DataContainer {
+public class DataContainer implements Serializable {
 
     DataEntity entities[] = new DataEntity[5];
     final String criticalities[] = {"high", "medium high", "medium", "medium low", "low"};

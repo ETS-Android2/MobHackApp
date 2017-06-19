@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     EditText etURL;
     Button btnSubmit;
 
+
     String sourceCode = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
             checkDoctype(sourceCode);
             checkTitleLength(sourceCode);
             DataContainer dataContainer = new DataContainer(getApplicationContext());
-            startFragment();
+            startFragment(dataContainer);
         }
         else
         {
@@ -58,12 +59,17 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void startFragment()
+    public void startFragment(DataContainer dataContainer)
     {
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("Data Container",dataContainer);
+
+
         FragmentManager fm = getFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
 
         Fragment fragment = new CheckingParamsFragment();
+        fragment.setArguments(bundle);
         ft.add(R.id.parentLinearLayout, fragment);
         ft.commit();
     }
