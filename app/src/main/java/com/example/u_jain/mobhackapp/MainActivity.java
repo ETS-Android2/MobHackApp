@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
             // CODE TO CALL CHECKER FUNCTIONS CAN BE WRITTEN HERE
             checkDoctype(sourceCode);
             checkTitleLength(sourceCode);
+            DataContainer dataContainer = new DataContainer();
         }
         else
         {

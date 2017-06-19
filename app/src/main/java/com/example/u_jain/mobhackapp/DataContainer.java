@@ -1,6 +1,11 @@
 package com.example.u_jain.mobhackapp;
 
+import android.content.Context;
+import android.widget.Toast;
+
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Set;
 
 /**
  * Created by U_Jain on 6/15/2017.
@@ -70,11 +75,18 @@ public class DataContainer {
         {
             for (String s :
                     paramsCriticalities[i]) {
-
+                entities[i].paramHashMap.put(s,"");
             }
         }
-
-
-
+//        for(int i=0; i<5; i++)
+//        {
+//            Set<String> set = entities[i].paramHashMap.keySet();
+//            Iterator<String> iterator = set.iterator();
+//            while(iterator.hasNext())
+//            {
+////                Toast.makeText(context, iterator.next(), Toast.LENGTH_SHORT).show();
+//            }
+//        }
     }
+
 }
