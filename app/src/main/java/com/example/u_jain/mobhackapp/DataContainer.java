@@ -58,15 +58,6 @@ public class DataContainer {
 
     public DataContainer(Context context)
     {
-        int paramsLen = 0;
-        for(int i=0; i<5; i++)
-        {
-            entities[i] = new DataEntity();
-            entities[i].citicalityMeasure = new String();
-            entities[i].citicalityMeasure = criticalities[i];
-            entities[i].paramHashMap = new HashMap<>();
-
-        }
         paramsCriticalities[0] = new String[paramsHigh.length];
         paramsCriticalities[0] = paramsHigh;
         paramsCriticalities[1] = new String[paramsMediumHigh.length];
@@ -77,15 +68,18 @@ public class DataContainer {
         paramsCriticalities[3] = paramsMediumLow;
         paramsCriticalities[4] = new String[paramsLow.length];
         paramsCriticalities[4] = paramsLow;
-
-
         for(int i=0; i<5; i++)
         {
+            entities[i] = new DataEntity();
+            entities[i].citicalityMeasure = new String();
+            entities[i].citicalityMeasure = criticalities[i];
+            entities[i].paramHashMap = new HashMap<>();
             for (String s :
                     paramsCriticalities[i]) {
                 entities[i].paramHashMap.put(s,"");
             }
         }
+
         for(int i=0; i<5; i++)
         {
             Set<String> set = entities[i].paramHashMap.keySet();

@@ -1,5 +1,8 @@
 package com.example.u_jain.mobhackapp;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,7 +19,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -48,11 +50,22 @@ public class MainActivity extends AppCompatActivity {
             checkDoctype(sourceCode);
             checkTitleLength(sourceCode);
             DataContainer dataContainer = new DataContainer(getApplicationContext());
+            startFragment();
         }
         else
         {
             // SOURCE CODE COULD NOT BE FETCHED
         }
+    }
+
+    public void startFragment()
+    {
+        FragmentManager fm = getFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+
+        Fragment fragment = new CheckingParamsFragment();
+        ft.add(R.id.parentLinearLayout, fragment);
+        ft.commit();
     }
 
     public void evaluateURL(View v)
