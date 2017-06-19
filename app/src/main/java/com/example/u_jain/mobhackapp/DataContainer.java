@@ -56,20 +56,28 @@ public class DataContainer {
         HashMap<String, String> paramHashMap;
     }
 
-    public DataContainer()
+    public DataContainer(Context context)
     {
         int paramsLen = 0;
         for(int i=0; i<5; i++)
         {
+            entities[i] = new DataEntity();
+            entities[i].citicalityMeasure = new String();
             entities[i].citicalityMeasure = criticalities[i];
             entities[i].paramHashMap = new HashMap<>();
 
         }
         paramsCriticalities[0] = new String[paramsHigh.length];
+        paramsCriticalities[0] = paramsHigh;
         paramsCriticalities[1] = new String[paramsMediumHigh.length];
+        paramsCriticalities[1] = paramsMediumHigh;
         paramsCriticalities[2] = new String[paramsMedium.length];
+        paramsCriticalities[2] = paramsMedium;
         paramsCriticalities[3] = new String[paramsMediumLow.length];
+        paramsCriticalities[3] = paramsMediumLow;
         paramsCriticalities[4] = new String[paramsLow.length];
+        paramsCriticalities[4] = paramsLow;
+
 
         for(int i=0; i<5; i++)
         {
@@ -78,15 +86,15 @@ public class DataContainer {
                 entities[i].paramHashMap.put(s,"");
             }
         }
-//        for(int i=0; i<5; i++)
-//        {
-//            Set<String> set = entities[i].paramHashMap.keySet();
-//            Iterator<String> iterator = set.iterator();
-//            while(iterator.hasNext())
-//            {
-////                Toast.makeText(context, iterator.next(), Toast.LENGTH_SHORT).show();
-//            }
-//        }
+        for(int i=0; i<5; i++)
+        {
+            Set<String> set = entities[i].paramHashMap.keySet();
+            Iterator<String> iterator = set.iterator();
+            while(iterator.hasNext())
+            {
+                Toast.makeText(context, iterator.next(), Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
 }
