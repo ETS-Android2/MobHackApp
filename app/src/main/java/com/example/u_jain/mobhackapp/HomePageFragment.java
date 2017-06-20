@@ -30,6 +30,7 @@ public class HomePageFragment extends Fragment {
     TextView tv;
     EditText etURL;
     Button btnSubmit;
+    int responseStatusCode=-1;
 
     static String sourceCode;
     @Nullable
@@ -78,6 +79,7 @@ public class HomePageFragment extends Fragment {
         Bundle bundle = new Bundle();
         bundle.putSerializable("Data Container",dataContainer);
         bundle.putString("Source Code", sourceCode);
+        bundle.putInt("Response Status Code", responseStatusCode);
 
         FragmentManager fm = getFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
@@ -98,7 +100,7 @@ public class HomePageFragment extends Fragment {
         try {
             InputStream in = new BufferedInputStream(urlConnection.getInputStream());
             BufferedReader reader = new BufferedReader(new InputStreamReader(in, "windows-1251"), 8);
-
+            responseStatusCode = urlConnection.getResponseCode();
             String line = "";
             while((line  = reader.readLine()) != null)
             {

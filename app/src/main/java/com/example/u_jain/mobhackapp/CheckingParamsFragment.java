@@ -23,7 +23,7 @@ public class CheckingParamsFragment extends Fragment {
     DataContainer dataContainer;
     Context context;
     String sourceCode;
-
+    int responseStatusCode;
     @Override
     public void onAttach(Context context) {
         this.context = context;
@@ -36,6 +36,7 @@ public class CheckingParamsFragment extends Fragment {
         dataContainer= (DataContainer) getArguments().getSerializable("Data Container");
         sourceCode = getArguments().getString("Source Code");
         context = getActivity().getApplicationContext();
+        responseStatusCode = getArguments().getInt("Response Status Code");
         View view= inflater.inflate(R.layout.fragment_checking_params, container, false);
         TextView fragmenttv = (TextView) view.findViewById(R.id.fragmentTextView);
         fragmenttv.setText(dataContainer.entities[0].criticalityMeasure);
@@ -50,6 +51,24 @@ public class CheckingParamsFragment extends Fragment {
             checkTitleLength(sourceCode);
             return null;
         }
+    }
+    public boolean check3xxError(String sourceCode)
+    {
+        boolean bool = false;
+        int tempResponseStatusCode = responseStatusCode;
+        while(tempResponseStatusCode/10 != 0)
+        {
+            tempResponseStatusCode /= 10;
+        }
+        if(tempResponseStatusCode == 3)
+        {
+            bool = true;
+            // Write code to set Hashmap for 3xx
+        }
+        else {
+            bool = false;
+        }
+        return bool;
     }
     public boolean checkDoctype(String sourceCode)
     {
