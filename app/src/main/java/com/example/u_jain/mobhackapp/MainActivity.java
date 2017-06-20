@@ -64,13 +64,13 @@ public class MainActivity extends AppCompatActivity {
         Bundle bundle = new Bundle();
         bundle.putSerializable("Data Container",dataContainer);
 
-
         FragmentManager fm = getFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
 
         Fragment fragment = new CheckingParamsFragment();
         fragment.setArguments(bundle);
-        ft.add(R.id.parentLinearLayout, fragment);
+        ft.add(R.id.FrameLayoutResult, fragment);
+        tv.setText("");
         ft.commit();
     }
 
