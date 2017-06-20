@@ -31,7 +31,7 @@ public class HomePageFragment extends Fragment {
     EditText etURL;
     Button btnSubmit;
 
-    String sourceCode = "";
+    static String sourceCode;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -39,6 +39,23 @@ public class HomePageFragment extends Fragment {
         tv = (TextView) view.findViewById(R.id.tv);
         etURL = (EditText) view.findViewById(R.id.etURL);
         btnSubmit = (Button) view.findViewById(R.id.btnSubmit);
+        btnSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String website = etURL.getText().toString();
+                String sourceCode = "";
+                try {
+                    sourceCode = getWebsiteSourceCode(website);
+                    tv.setText(sourceCode);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                sourceCode = sourceCode.toLowerCase();
+                HomePageFragment.sourceCode = sourceCode;
+
+                checkScoringParameters();
+            }
+        });
         return view;
     }
 
