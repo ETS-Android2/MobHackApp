@@ -53,7 +53,7 @@ public class DataContainer implements Serializable {
                                         "self canonical",
                                         "missing canonical"};
     public class DataEntity {
-        String citicalityMeasure;
+        String criticalityMeasure;
         HashMap<String, String> paramHashMap;
     }
 
@@ -72,8 +72,8 @@ public class DataContainer implements Serializable {
         for(int i=0; i<5; i++)
         {
             entities[i] = new DataEntity();
-            entities[i].citicalityMeasure = new String();
-            entities[i].citicalityMeasure = criticalities[i];
+            entities[i].criticalityMeasure = new String();
+            entities[i].criticalityMeasure = criticalities[i];
             entities[i].paramHashMap = new HashMap<>();
             for (String s :
                     paramsCriticalities[i]) {

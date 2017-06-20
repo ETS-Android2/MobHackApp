@@ -48,8 +48,8 @@ public class MainActivity extends AppCompatActivity {
         if(!sourceCode.equals(""))
         {
             // CODE TO CALL CHECKER FUNCTIONS CAN BE WRITTEN HERE
-            checkDoctype(sourceCode);
-            checkTitleLength(sourceCode);
+//            checkDoctype(sourceCode);
+//            checkTitleLength(sourceCode);
             DataContainer dataContainer = new DataContainer(getApplicationContext());
             startFragment(dataContainer);
         }
@@ -63,13 +63,14 @@ public class MainActivity extends AppCompatActivity {
     {
         Bundle bundle = new Bundle();
         bundle.putSerializable("Data Container",dataContainer);
+        bundle.putString("Source Code", sourceCode);
 
         FragmentManager fm = getFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
 
         Fragment fragment = new CheckingParamsFragment();
         fragment.setArguments(bundle);
-        ft.add(R.id.FrameLayoutResult, fragment);
+        ft.replace(R.id.FrameLayoutResult, fragment);
         tv.setText("");
         ft.commit();
     }
