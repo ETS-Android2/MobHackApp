@@ -25,70 +25,23 @@ import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView tv;
-    EditText etURL;
-    Button btnSubmit;
 
-
-    String sourceCode = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        tv = (TextView) findViewById(R.id.tv);
-        etURL = (EditText) findViewById(R.id.etURL);
-        btnSubmit = (Button) findViewById(R.id.btnSubmit);
-
-
+        startHomePageFragment();
     }
 
-    private void checkScoringParameters() {
-        Toast.makeText(getApplicationContext(),"in check scroring params", Toast.LENGTH_SHORT).show();
-        if(!sourceCode.equals(""))
-        {
-            // CODE TO CALL CHECKER FUNCTIONS CAN BE WRITTEN HERE
-//            checkDoctype(sourceCode);
-//            checkTitleLength(sourceCode);
-            DataContainer dataContainer = new DataContainer(getApplicationContext());
-            startFragment(dataContainer);
-        }
-        else
-        {
-            // SOURCE CODE COULD NOT BE FETCHED
-        }
-    }
-
-    public void startFragment(DataContainer dataContainer)
+    public void startHomePageFragment()
     {
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("Data Container",dataContainer);
-        bundle.putString("Source Code", sourceCode);
-
         FragmentManager fm = getFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
 
-        Fragment fragment = new CheckingParamsFragment();
-        fragment.setArguments(bundle);
-        ft.replace(R.id.FrameLayoutResult, fragment);
-        tv.setText("");
+        Fragment fragmentHomePage = new HomePageFragment();
+        ft.add(R.id.parentLinearLayout, fragmentHomePage);
         ft.commit();
-    }
-
-    public void evaluateURL(View v)
-    {
-        String website = etURL.getText().toString();
-        String sourceCode = "";
-        try {
-            sourceCode = getWebsiteSourceCode(website);
-            tv.setText(sourceCode);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        sourceCode = sourceCode.toLowerCase();
-        this.sourceCode = sourceCode;
-
-        checkScoringParameters();
     }
 
     public boolean checkDoctype(String sourceCode)
@@ -142,27 +95,5 @@ public class MainActivity extends AppCompatActivity {
         return bool;
     }
 
-    public String getWebsiteSourceCode(String website) throws IOException {
-        String resString = "";
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
-        StringBuilder sb = new StringBuilder();
-        URL url = new URL(website);
-        HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-        try {
-            InputStream in = new BufferedInputStream(urlConnection.getInputStream());
-            BufferedReader reader = new BufferedReader(new InputStreamReader(in, "windows-1251"), 8);
 
-            String line = "";
-            while((line  = reader.readLine()) != null)
-            {
-                sb.append(line + "\n");
-            }
-            in.close();
-        } finally {
-            urlConnection.disconnect();
-        }
-        resString = sb.toString();
-        return  resString;
-    }
 }
