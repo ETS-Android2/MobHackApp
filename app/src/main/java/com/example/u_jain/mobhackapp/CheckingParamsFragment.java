@@ -9,7 +9,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.TextView;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import android.widget.Toast;
 
 import java.util.regex.Matcher;
@@ -23,6 +26,9 @@ public class CheckingParamsFragment extends Fragment {
     DataContainer dataContainer;
     Context context;
     String sourceCode;
+    ListView listView;
+    TextView fragmenttv;
+
     int responseStatusCode;
     @Override
     public void onAttach(Context context) {
@@ -35,11 +41,16 @@ public class CheckingParamsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         dataContainer= (DataContainer) getArguments().getSerializable("Data Container");
         sourceCode = getArguments().getString("Source Code");
-        context = getActivity().getApplicationContext();
         responseStatusCode = getArguments().getInt("Response Status Code");
         View view= inflater.inflate(R.layout.fragment_checking_params, container, false);
-        TextView fragmenttv = (TextView) view.findViewById(R.id.fragmentTextView);
-        fragmenttv.setText(dataContainer.entities[0].criticalityMeasure);
+        context = getActivity().getApplicationContext();
+        fragmenttv = (TextView) view.findViewById(R.id.tvScore);
+        listView= (ListView) view.findViewById(R.id.listView);
+
+        CustomListView adapter = new CustomListView(context,dataContainer.allValues());
+
+        listView.setAdapter(adapter);
+
         (new CheckParamTask()).execute();
         return view;
     }

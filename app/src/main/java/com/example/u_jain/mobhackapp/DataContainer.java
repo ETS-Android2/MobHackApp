@@ -57,6 +57,27 @@ public class DataContainer implements Serializable {
         HashMap<String, String> paramHashMap;
     }
 
+
+    public String[][] allValues()
+    {
+        String str[][] = new String[28][3];
+        int k=0;
+        for(int i=0; i<5; i++)
+        {
+            Set<String> set = entities[i].paramHashMap.keySet();
+            Iterator<String> iterator = set.iterator();
+            while(iterator.hasNext())
+            {
+                String s=iterator.next();
+                str[k][2]=entities[i].paramHashMap.get(s);
+                str[k][1]=entities[i].criticalityMeasure;
+                str[k][0]=s;
+                k++;
+            }
+        }
+        return  str;
+    }
+
     public DataContainer(Context context)
     {
         paramsCriticalities[0] = new String[paramsHigh.length];
