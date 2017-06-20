@@ -35,7 +35,7 @@ public class CheckingParamsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         dataContainer= (DataContainer) getArguments().getSerializable("Data Container");
         sourceCode = getArguments().getString("Source Code");
-//        context = getActivity().getApplicationContext();
+        context = getActivity().getApplicationContext();
         View view= inflater.inflate(R.layout.fragment_checking_params, container, false);
         TextView fragmenttv = (TextView) view.findViewById(R.id.fragmentTextView);
         fragmenttv.setText(dataContainer.entities[0].criticalityMeasure);
@@ -60,12 +60,14 @@ public class CheckingParamsFragment extends Fragment {
         Matcher matcher = pattern.matcher(sourceCode);
         if(matcher.find())
         {
-//            Toast.makeText(context,"doctype exists", Toast.LENGTH_LONG).show();
+           //Toast.makeText(context,"doctype exists", Toast.LENGTH_LONG).show();
+            dataContainer.entities[0].paramHashMap.put("doctype","yes");
+            Log.v("Check:",dataContainer.entities[0].paramHashMap.get("doctype"));
             bool = true;
         }
         else
         {
-//            Toast.makeText(context,"doctype not exists", Toast.LENGTH_LONG).show();
+            dataContainer.entities[0].paramHashMap.put("doctype","no");
         }
         return bool;
     }
@@ -79,10 +81,12 @@ public class CheckingParamsFragment extends Fragment {
         Matcher matcher = pattern.matcher(sourceCode);
         if(matcher.find())
         {
-//            Toast.makeText(context,"title exists", Toast.LENGTH_SHORT).show();
+           //Toast.makeText(context,"title exists", Toast.LENGTH_SHORT).show();
+            dataContainer.entities[0].paramHashMap.put("title tag","yes");
             if(matcher.groupCount()>0)
             {
-//                Toast.makeText(context,"title size : " + matcher.group(1).length(), Toast.LENGTH_LONG).show();
+              // Toast.makeText(context,"title size : " + matcher.group(1).length(), Toast.LENGTH_LONG).show();
+                //dataContainer.entities[0].paramHashMap.put("title tag","yes");
 //                if()
 //                {
 //                    //WRITE LOGIC FOR TITLE LENGTH AND SET BOOL ACCORDINGLY
@@ -97,7 +101,8 @@ public class CheckingParamsFragment extends Fragment {
         }
         else
         {
-//            Toast.makeText(context,"title not exists", Toast.LENGTH_LONG).show();
+           //Toast.makeText(context,"title not exists", Toast.LENGTH_LONG).show();
+            dataContainer.entities[0].paramHashMap.put("title tag","no");
         }
         return bool;
     }
