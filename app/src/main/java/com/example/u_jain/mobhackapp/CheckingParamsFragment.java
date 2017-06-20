@@ -70,6 +70,60 @@ public class CheckingParamsFragment extends Fragment {
         }
         return bool;
     }
+
+    public boolean check4xxError(String sourceCode)
+    {
+        boolean bool = false;
+        int tempResponseStatusCode = responseStatusCode;
+        while(tempResponseStatusCode/10 != 0)
+        {
+            tempResponseStatusCode /= 10;
+        }
+        if(tempResponseStatusCode == 4)
+        {
+            bool = true;
+            // Write code to set Hashmap for 3xx
+        }
+        else {
+            bool = false;
+        }
+        return bool;
+    }
+
+    public boolean check5xxError(String sourceCode)
+    {
+        boolean bool = false;
+        int tempResponseStatusCode = responseStatusCode;
+        while(tempResponseStatusCode/10 != 0)
+        {
+            tempResponseStatusCode /= 10;
+        }
+        if(tempResponseStatusCode == 5)
+        {
+            bool = true;
+            // Write code to set Hashmap for 3xx
+        }
+        else {
+            bool = false;
+        }
+        return bool;
+    }
+
+    public boolean check200StatusCode(String sourceCode)
+    {
+        boolean bool = false;
+        int tempResponseStatusCode = responseStatusCode;
+        if(tempResponseStatusCode == 200)
+        {
+            bool = true;
+            // Write code to set Hashmap for 3xx
+        }
+        else {
+            bool = false;
+        }
+        return bool;
+    }
+
     public boolean checkDoctype(String sourceCode)
     {
         Log.v("in doctype checking : ", "yes");
