@@ -12,7 +12,8 @@
     tools:layout_editor_absoluteX="8dp">
 
     <LinearLayout
-        android:id="@+id/parentLinearLayoutHome"
+        android:orientation="vertical"
+        android:id="@+id/parentLinearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
