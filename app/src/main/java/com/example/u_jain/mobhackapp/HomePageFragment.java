@@ -63,9 +63,6 @@ public class HomePageFragment extends Fragment {
         Toast.makeText(getActivity().getApplicationContext(),"in check scroring params", Toast.LENGTH_SHORT).show();
         if(!sourceCode.equals(""))
         {
-            // CODE TO CALL CHECKER FUNCTIONS CAN BE WRITTEN HERE
-//            checkDoctype(sourceCode);
-//            checkTitleLength(sourceCode);
             DataContainer dataContainer = new DataContainer(getActivity().getApplicationContext());
             startFragment(dataContainer);
         }
@@ -88,25 +85,7 @@ public class HomePageFragment extends Fragment {
         Fragment fragment = new CheckingParamsFragment();
         fragment.setArguments(bundle);
         ft.replace(R.id.parentLinearLayout, fragment);
-//        tv.setText("");
         ft.commit();
-    }
-
-
-    public void evaluateURL(View v)
-    {
-        String website = etURL.getText().toString();
-        String sourceCode = "";
-        try {
-            sourceCode = getWebsiteSourceCode(website);
-            tv.setText(sourceCode);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        sourceCode = sourceCode.toLowerCase();
-        this.sourceCode = sourceCode;
-
-        checkScoringParameters();
     }
 
     public String getWebsiteSourceCode(String website) throws IOException {
