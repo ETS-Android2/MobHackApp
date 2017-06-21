@@ -46,12 +46,9 @@ public class CheckingParamsFragment extends Fragment {
         context = getActivity().getApplicationContext();
         fragmenttv = (TextView) view.findViewById(R.id.tvScore);
         listView= (ListView) view.findViewById(R.id.listView);
-
-        CustomListView adapter = new CustomListView(context,dataContainer.allValues());
-
-        listView.setAdapter(adapter);
-
         (new CheckParamTask()).execute();
+        CustomListView adapter = new CustomListView(context,dataContainer.allValues());
+        listView.setAdapter(adapter);
         return view;
     }
     public class CheckParamTask extends AsyncTask<Void, Void, Void>
