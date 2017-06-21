@@ -10,7 +10,10 @@
         android:orientation="horizontal"
         android:gravity="center"
         android:weightSum="2"
-        android:layout_margin="16dp">
+        android:padding="8dp"
+
+        android:background="@drawable/listbackground"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -22,6 +25,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Parameter"
+                android:textColor="@color/black"
                 android:id="@+id/tvparamerter"/>
 
             <Space
@@ -33,6 +37,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Criticality"
+                android:textColor="@color/black"
                 android:id="@+id/tvcriticality"/>
 
         </LinearLayout>
@@ -43,6 +48,7 @@
             android:layout_height="wrap_content"
             android:text="Yes/No"
             android:layout_weight="1"
+            android:textColor="@color/black"
             android:id="@+id/tvyesno"/>
     </LinearLayout>
 
