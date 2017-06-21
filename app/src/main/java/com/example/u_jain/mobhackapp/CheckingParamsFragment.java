@@ -56,6 +56,11 @@ public class CheckingParamsFragment extends Fragment {
         protected Void doInBackground(Void... params) {
             checkDoctype(sourceCode);
             checkTitleLength(sourceCode);
+            check200StatusCode(sourceCode);
+            check4xxError(sourceCode);
+            check3xxError(sourceCode);
+            check5xxError(sourceCode);
+            checkDescription(sourceCode);
             return null;
         }
 
@@ -77,9 +82,11 @@ public class CheckingParamsFragment extends Fragment {
         if(tempResponseStatusCode == 3)
         {
             bool = true;
+            dataContainer.entities[0].paramHashMap.put("3xx error","yes");
             // Write code to set Hashmap for 3xx
         }
         else {
+            dataContainer.entities[0].paramHashMap.put("3xx error","no");
             bool = false;
         }
         return bool;
@@ -96,9 +103,11 @@ public class CheckingParamsFragment extends Fragment {
         if(tempResponseStatusCode == 4)
         {
             bool = true;
+            dataContainer.entities[3].paramHashMap.put("4xx error","yes");
             // Write code to set Hashmap for 3xx
         }
         else {
+            dataContainer.entities[3].paramHashMap.put("4xx error","no");
             bool = false;
         }
         return bool;
@@ -115,9 +124,11 @@ public class CheckingParamsFragment extends Fragment {
         if(tempResponseStatusCode == 5)
         {
             bool = true;
+            dataContainer.entities[4].paramHashMap.put("status code 5xx","yes");
             // Write code to set Hashmap for 3xx
         }
         else {
+            dataContainer.entities[4].paramHashMap.put("status code 5xx","no");
             bool = false;
         }
         return bool;
@@ -130,10 +141,31 @@ public class CheckingParamsFragment extends Fragment {
         if(tempResponseStatusCode == 200)
         {
             bool = true;
+            dataContainer.entities[4].paramHashMap.put("status code 200","yes");
             // Write code to set Hashmap for 3xx
         }
         else {
             bool = false;
+            dataContainer.entities[4].paramHashMap.put("status code 200","no");
+        }
+        return bool;
+    }
+
+    public boolean checkDescription(String sourceCode)
+    {
+        boolean bool = false;
+        final String strToChk = "[<][\\s]*[m][e][t][a][\\s]{1,}[n][a][m][e][\\s]*[=][\\s]*[\"][d][e][s][c][r][i]\t[p][t][i][o][n][\"][\\s]{1,}[c][o][n][t][e][n][t][\\s]*[=].*[/][>]";
+        Pattern pattern = Pattern.compile(strToChk);
+        Matcher matcher = pattern.matcher(sourceCode);
+        if(matcher.find())
+        {
+            //Toast.makeText(context,"doctype exists", Toast.LENGTH_LONG).show();
+            dataContainer.entities[1].paramHashMap.put("missing or empty meta description tag","yes");
+            bool = true;
+        }
+        else
+        {
+            dataContainer.entities[1].paramHashMap.put("missing or empty meta description tag","no");
         }
         return bool;
     }

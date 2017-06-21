@@ -1,9 +1,11 @@
 package com.example.u_jain.mobhackapp;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
@@ -14,6 +16,7 @@ import java.util.Set;
 
 public class DataContainer implements Serializable {
 
+    Context context;
     DataEntity entities[] = new DataEntity[5];
     final String criticalities[] = {"high", "medium high", "medium", "medium low", "low"};
 
@@ -60,7 +63,9 @@ public class DataContainer implements Serializable {
 
     public String[][] allValues()
     {
+//        String[][] dataModel = new String[][];
         String str[][] = new String[28][3];
+//        String str[] = new String[3];
         int k=0;
         for(int i=0; i<5; i++)
         {
@@ -69,17 +74,20 @@ public class DataContainer implements Serializable {
             while(iterator.hasNext())
             {
                 String s=iterator.next();
+
                 str[k][2]=entities[i].paramHashMap.get(s);
                 str[k][1]=entities[i].criticalityMeasure;
                 str[k][0]=s;
                 k++;
+
             }
         }
-        return  str;
+        return str;
     }
 
     public DataContainer(Context context)
     {
+        this.context = context;
         paramsCriticalities[0] = new String[paramsHigh.length];
         paramsCriticalities[0] = paramsHigh;
         paramsCriticalities[1] = new String[paramsMediumHigh.length];
@@ -102,15 +110,15 @@ public class DataContainer implements Serializable {
             }
         }
 
-        for(int i=0; i<5; i++)
-        {
-            Set<String> set = entities[i].paramHashMap.keySet();
-            Iterator<String> iterator = set.iterator();
-            while(iterator.hasNext())
-            {
-                Toast.makeText(context, iterator.next(), Toast.LENGTH_SHORT).show();
-            }
-        }
+//        for(int i=0; i<5; i++)
+//        {
+//            Set<String> set = entities[i].paramHashMap.keySet();
+//            Iterator<String> iterator = set.iterator();
+//            while(iterator.hasNext())
+//            {
+//                Toast.makeText(context, iterator.next(), Toast.LENGTH_SHORT).show();
+//            }
+//        }
     }
 
 }

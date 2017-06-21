@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 /**
  * Created by Subodh on 21-Jun-17.
  */
@@ -36,7 +38,7 @@ public class CustomListView extends ArrayAdapter {
     }
 
     public CustomListView(@NonNull Context context, String[][] populateValues) {
-        super(context, R.layout.listitem,populateValues);
+        super(context, R.layout.listitem, populateValues);
         this.context=context;
         this.populateValues=populateValues;
 
