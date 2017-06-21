@@ -47,8 +47,7 @@ public class CheckingParamsFragment extends Fragment {
         fragmenttv = (TextView) view.findViewById(R.id.tvScore);
         listView= (ListView) view.findViewById(R.id.listView);
         (new CheckParamTask()).execute();
-        CustomListView adapter = new CustomListView(context,dataContainer.allValues());
-        listView.setAdapter(adapter);
+
         return view;
     }
     public class CheckParamTask extends AsyncTask<Void, Void, Void>
@@ -58,6 +57,13 @@ public class CheckingParamsFragment extends Fragment {
             checkDoctype(sourceCode);
             checkTitleLength(sourceCode);
             return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            CustomListView adapter = new CustomListView(context,dataContainer.allValues());
+            listView.setAdapter(adapter);
         }
     }
     public boolean check3xxError(String sourceCode)
