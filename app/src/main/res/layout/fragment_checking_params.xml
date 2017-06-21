@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/green">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_margin="16dp"
+        android:background="#263238"
+        android:padding="16dp"
         android:id="@+id/pageScoreLayout"
         android:weightSum="2">
 
@@ -16,6 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Page Score:"
+            android:textColor="@color/white"
             android:layout_weight="2"
             />
         <TextView
@@ -23,6 +26,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/tvScore"
             android:layout_weight="1"
+            android:textColor="@color/white"
             android:text="xxxx"/>
     </LinearLayout>
     <ListView
