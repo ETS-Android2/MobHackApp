@@ -205,7 +205,7 @@ public class CheckingParamsFragment extends Fragment {
 
             String str= func("href",s1);
 
-            if(!str.equals(""))
+            if(str!=null)
             {
                 //Write code to set hash with yes
                 dataContainer.entities[0].paramHashMap.put("broken canonical","no");
@@ -296,7 +296,7 @@ public class CheckingParamsFragment extends Fragment {
         return bool;
     }
 
-    public static String func(String str,String tag)
+    public String func(String str,String tag)
     {
         // System.out.println(str);
         // System.out.println(tag);
