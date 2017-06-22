@@ -38,8 +38,8 @@ public class HomePageFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view= inflater.inflate(R.layout.fragment_home_page, container, false);
         tv = (TextView) view.findViewById(R.id.tv);
-        etURL = (EditText) view.findViewById(R.id.etURL);
-        btnSubmit = (Button) view.findViewById(R.id.btnSubmit);
+        etURL = (EditText) view.findViewById(R.id.URL_Enter);
+        btnSubmit = (Button) view.findViewById(R.id.btn1);
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

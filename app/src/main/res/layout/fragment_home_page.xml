@@ -1,47 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <LinearLayout
-        android:id="@+id/parentLinearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#8BC34A"
+    tools:context="com.example.u_jain.mobhackapp.MainActivity">
 
+
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        >
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
+            android:background="#263238"
+
+            android:id="@+id/linearLayout"
+            android:weightSum="1">
+
+            <ImageView
+                android:id="@+id/image1"
+                android:layout_width="109dp"
+                android:layout_height="105dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="130dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="0.04"
+
+                app:srcCompat="@drawable/icon4" />
+        </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="1">
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="0.7"
-                android:layout_height="50dp">
-                <EditText
-                    android:id="@+id/etURL"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="0.3"
-                android:layout_height="50dp">
-                <Button
-                    android:id="@+id/btnSubmit"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="Evaluate"/>
-            </LinearLayout>
+            android:paddingRight="50dp"
+            android:id="@+id/LL1"
+            android:background="#8BC34A"
+
+            android:layout_toRightOf="@+id/linearLayout2"
+            android:layout_toEndOf="@+id/linearLayout2"
+            android:layout_below="@+id/linearLayout">
+
+
+            <EditText
+                android:id="@+id/URL_Enter"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginLeft="40dp"
+
+
+                android:layout_marginTop="90dp"
+                android:hint="  Enter URL  "
+                android:textAlignment="center"
+
+                />
+
         </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="280dp"
+            android:id="@+id/LL2"
+            android:layout_marginTop="0dp"
+            android:layout_below="@id/LL1"
+            android:background="#8BC34A"
+            android:paddingRight="10dp"
+            >
+            <Button
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+
+                android:layout_marginLeft="80dp"
+                android:layout_marginTop="20dp"
+
+                android:id="@+id/btn1"
+                android:text="Score it"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:background="@drawable/round_buttons"
+
+                />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+
+            android:layout_height="0dp"
+            android:layout_width="0dp"
+            android:layout_below="@id/LL2"
+            android:background="@color/colorGrey"
+            tools:layout_editor_absoluteY="8dp"
+            tools:layout_editor_absoluteX="8dp"
+            android:id="@+id/linearLayout2">
+
             <TextView
-                android:id="@+id/tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="" />
+                android:id="@+id/tv"/>
         </LinearLayout>
-    </LinearLayout>
-</LinearLayout>
+
+
+
+    </RelativeLayout>
+
+
+</android.support.constraint.ConstraintLayout>
