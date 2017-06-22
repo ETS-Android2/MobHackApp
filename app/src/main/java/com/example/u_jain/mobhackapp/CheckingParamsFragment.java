@@ -163,7 +163,6 @@ public class CheckingParamsFragment extends Fragment {
         Matcher matcher = pattern.matcher(sourceCode);
         if(matcher.find())
         {
-            //Toast.makeText(context,"doctype exists", Toast.LENGTH_LONG).show();
             dataContainer.entities[1].paramHashMap.put("missing or empty meta description tag","yes");
             bool = true;
         }
@@ -185,7 +184,6 @@ public class CheckingParamsFragment extends Fragment {
         {
            //Toast.makeText(context,"doctype exists", Toast.LENGTH_LONG).show();
             dataContainer.entities[0].paramHashMap.put("doctype","yes");
-            Log.v("Check:",dataContainer.entities[0].paramHashMap.get("doctype"));
             bool = true;
         }
         else
@@ -255,7 +253,7 @@ public class CheckingParamsFragment extends Fragment {
         }
         else
         {
-            dataContainer.entities[0].paramHashMap.put("og:description","ye");
+            dataContainer.entities[0].paramHashMap.put("og:description","yes");
         }
         return bool;
     }
@@ -269,12 +267,12 @@ public class CheckingParamsFragment extends Fragment {
         if(matcher.find())
         {
             //Toast.makeText(context,"doctype exists", Toast.LENGTH_LONG).show();
-            dataContainer.entities[1].paramHashMap.put("og:title","no");
+            dataContainer.entities[0].paramHashMap.put("og:title","no");
             bool = true;
         }
         else
         {
-            dataContainer.entities[1].paramHashMap.put("og:title","yes");
+            dataContainer.entities[0].paramHashMap.put("og:title","yes");
         }
         return bool;
     }
