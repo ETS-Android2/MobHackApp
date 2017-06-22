@@ -298,19 +298,12 @@ public class CheckingParamsFragment extends Fragment {
 
     public String func(String str,String tag)
     {
-        // System.out.println(str);
-        // System.out.println(tag);
         int i= tag.indexOf(str);
         int j= tag.indexOf("=",i);
         int k= tag.indexOf("\"",j);
         int h= tag.indexOf("\"",k+1);
-       /* System.out.println(i);
-        System.out.println(j);
-        System.out.println(k);
-        System.out.println(h);*/
         String yobaby= tag.substring(k+1,h);
         return(yobaby);
-
     }
     public boolean checkTitleLength(String sourceCode)
     {
