@@ -231,12 +231,12 @@ public class CheckingParamsFragment extends Fragment {
         if(matcher.find())
         {
             //Toast.makeText(context,"doctype exists", Toast.LENGTH_LONG).show();
-            dataContainer.entities[0].paramHashMap.put("missing or empty meta description tag","no");
+            dataContainer.entities[0].paramHashMap.put("missing meta keyword tag","no");
             bool = true;
         }
         else
         {
-            dataContainer.entities[0].paramHashMap.put("missing or empty meta description tag","yes");
+            dataContainer.entities[0].paramHashMap.put("missing meta keyword tag","yes");
         }
         return bool;
     }
@@ -264,6 +264,25 @@ public class CheckingParamsFragment extends Fragment {
     {
         boolean bool = false;
         final String strToChk = "[<][\\s]*[m][e][t][a][\\s]{1,}[n][a][m][e][\\s]*[=][\\s]*[\"][o][g][:][t][i][t][l][e][\\\"][\\s]{1,}[c][o][n][t][e][n][t][\\s]*[=].*[/][>]";
+        Pattern pattern = Pattern.compile(strToChk);
+        Matcher matcher = pattern.matcher(sourceCode);
+        if(matcher.find())
+        {
+            //Toast.makeText(context,"doctype exists", Toast.LENGTH_LONG).show();
+            dataContainer.entities[1].paramHashMap.put("og:title","no");
+            bool = true;
+        }
+        else
+        {
+            dataContainer.entities[1].paramHashMap.put("og:title","yes");
+        }
+        return bool;
+    }
+
+    public boolean checkRobots(String sourceCode)
+    {
+        boolean bool = false;
+        final String strToChk = "[<][\\s]*[m][e][t][a][\\s]{1,}[n][a][m][e][\\s]*[=][\\s]*[\"][r][o][b][o][t][s][\"][\\s]{1,}[c][o][n][t][e][n][t][\\s]*[=].*[/][>]";
         Pattern pattern = Pattern.compile(strToChk);
         Matcher matcher = pattern.matcher(sourceCode);
         if(matcher.find())
