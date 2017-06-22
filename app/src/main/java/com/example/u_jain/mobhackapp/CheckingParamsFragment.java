@@ -61,6 +61,10 @@ public class CheckingParamsFragment extends Fragment {
             check3xxError(sourceCode);
             check5xxError(sourceCode);
             checkDescription(sourceCode);
+            checkCanonical(sourceCode);
+            checkMetaKeyword(sourceCode);
+            checkOGDescription(sourceCode);
+            checkOGTitle(sourceCode);
             return null;
         }
 
@@ -191,6 +195,106 @@ public class CheckingParamsFragment extends Fragment {
         return bool;
     }
 
+    public boolean checkCanonical(String sourceCode)
+    {
+        boolean bool =  false;
+        String str2Check = "[<][\\s]*[l][i][n][k][\\s]{1,}[r][e][l][\\s]*[=][\\s]*[\"][c][a][n][o][n][i][c][a][l][\"][\\s]{1,}[h][r][e][f][\\s]*[=].*[/][>]";
+        Pattern pattern = Pattern.compile(str2Check);
+        Matcher matcher = pattern.matcher(sourceCode);
+        if (matcher.find()) {
+
+            String s1=matcher.group();
+
+            String str= func("href",s1);
+
+            if(!str.equals(""))
+            {
+                //Write code to set hash with yes
+                dataContainer.entities[0].paramHashMap.put("broken canonical","no");
+                bool = true;
+            }
+            else
+            {
+                //No in hash
+                dataContainer.entities[0].paramHashMap.put("broken canonical","yes");
+                bool = false;
+            }
+        }
+        return bool;
+    }
+    public boolean checkMetaKeyword(String sourceCode)
+    {
+        boolean bool = false;
+        final String strToChk = "[<][\\s]*[m][e][t][a][\\s]{1,}[n][a][m][e][\\s]*[=][\\s]*[\"][k][e][y][w][o][r][d][\"][\\s]{1,}[c][o][n][t][e][n][t][\\s]*[=].*[/][>]";
+        Pattern pattern = Pattern.compile(strToChk);
+        Matcher matcher = pattern.matcher(sourceCode);
+        if(matcher.find())
+        {
+            //Toast.makeText(context,"doctype exists", Toast.LENGTH_LONG).show();
+            dataContainer.entities[0].paramHashMap.put("missing or empty meta description tag","no");
+            bool = true;
+        }
+        else
+        {
+            dataContainer.entities[0].paramHashMap.put("missing or empty meta description tag","yes");
+        }
+        return bool;
+    }
+
+    public boolean checkOGDescription(String sourceCode)
+    {
+        boolean bool = false;
+        final String strToChk = "[<][\\s]*[m][e][t][a][\\s]{1,}[n][a][m][e][\\s]*[=][\\s]*[\"][o][g][:][d][e][s][c][r][i][p][t][i][o][n][\"][\\s]{1,}[c][o][n][t][e][n][t][\\s]*[=].*[/][>]";
+        Pattern pattern = Pattern.compile(strToChk);
+        Matcher matcher = pattern.matcher(sourceCode);
+        if(matcher.find())
+        {
+            //Toast.makeText(context,"doctype exists", Toast.LENGTH_LONG).show();
+            dataContainer.entities[0].paramHashMap.put("og:description","no");
+            bool = true;
+        }
+        else
+        {
+            dataContainer.entities[0].paramHashMap.put("og:description","ye");
+        }
+        return bool;
+    }
+
+    public boolean checkOGTitle(String sourceCode)
+    {
+        boolean bool = false;
+        final String strToChk = "[<][\\s]*[m][e][t][a][\\s]{1,}[n][a][m][e][\\s]*[=][\\s]*[\"][o][g][:][t][i][t][l][e][\\\"][\\s]{1,}[c][o][n][t][e][n][t][\\s]*[=].*[/][>]";
+        Pattern pattern = Pattern.compile(strToChk);
+        Matcher matcher = pattern.matcher(sourceCode);
+        if(matcher.find())
+        {
+            //Toast.makeText(context,"doctype exists", Toast.LENGTH_LONG).show();
+            dataContainer.entities[1].paramHashMap.put("og:title","no");
+            bool = true;
+        }
+        else
+        {
+            dataContainer.entities[1].paramHashMap.put("og:title","yes");
+        }
+        return bool;
+    }
+
+    public static String func(String str,String tag)
+    {
+        // System.out.println(str);
+        // System.out.println(tag);
+        int i= tag.indexOf(str);
+        int j= tag.indexOf("=",i);
+        int k= tag.indexOf("\"",j);
+        int h= tag.indexOf("\"",k+1);
+       /* System.out.println(i);
+        System.out.println(j);
+        System.out.println(k);
+        System.out.println(h);*/
+        String yobaby= tag.substring(k+1,h);
+        return(yobaby);
+
+    }
     public boolean checkTitleLength(String sourceCode)
     {
         Log.v("in title checking : ", "yes");

@@ -61,7 +61,7 @@ public class HomePageFragment extends Fragment {
     }
 
     private void checkScoringParameters() {
-        Toast.makeText(getActivity().getApplicationContext(),"in check scroring params", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getActivity().getApplicationContext(),"in check scroring params", Toast.LENGTH_SHORT).show();
         if(!sourceCode.equals(""))
         {
             DataContainer dataContainer = new DataContainer(getActivity().getApplicationContext());
@@ -96,8 +96,9 @@ public class HomePageFragment extends Fragment {
         StrictMode.setThreadPolicy(policy);
         StringBuilder sb = new StringBuilder();
         URL url = new URL(website);
-        HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+        HttpURLConnection urlConnection = null;
         try {
+            urlConnection = (HttpURLConnection) url.openConnection();
             InputStream in = new BufferedInputStream(urlConnection.getInputStream());
             BufferedReader reader = new BufferedReader(new InputStreamReader(in, "windows-1251"), 8);
             responseStatusCode = urlConnection.getResponseCode();
@@ -107,7 +108,12 @@ public class HomePageFragment extends Fragment {
                 sb.append(line + "\n");
             }
             in.close();
-        } finally {
+        }
+        catch (Exception e)
+        {
+            Toast.makeText(getActivity().getApplicationContext(),"Change your internet network!", Toast.LENGTH_LONG).show();
+        }
+        finally {
             urlConnection.disconnect();
         }
         resString = sb.toString();
