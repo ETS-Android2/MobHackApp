@@ -63,9 +63,7 @@ public class DataContainer implements Serializable {
 
     public String[][] allValues()
     {
-//        String[][] dataModel = new String[][];
         String str[][] = new String[28][3];
-//        String str[] = new String[3];
         int k=0;
         for(int i=0; i<5; i++)
         {

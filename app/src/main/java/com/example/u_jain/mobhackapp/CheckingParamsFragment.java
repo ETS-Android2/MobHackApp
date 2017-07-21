@@ -247,7 +247,6 @@ public class CheckingParamsFragment extends Fragment {
         Matcher matcher = pattern.matcher(sourceCode);
         if(matcher.find())
         {
-            //Toast.makeText(context,"doctype exists", Toast.LENGTH_LONG).show();
             dataContainer.entities[0].paramHashMap.put("og:description","no");
             bool = true;
         }
@@ -266,7 +265,6 @@ public class CheckingParamsFragment extends Fragment {
         Matcher matcher = pattern.matcher(sourceCode);
         if(matcher.find())
         {
-            //Toast.makeText(context,"doctype exists", Toast.LENGTH_LONG).show();
             dataContainer.entities[0].paramHashMap.put("og:title","no");
             bool = true;
         }
